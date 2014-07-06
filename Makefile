@@ -16,8 +16,8 @@ all: build | install
 hex: elf $(BUILD_DIR)/$(FILENAME).elf
 	$(HEX_MAKER) -O ihex $(BUILD_DIR)/$(FILENAME).elf $(BUILD_DIR)/$(FILENAME).hex
 
-elf: mkTarget $(SRC_DIR)/$(FILENAME).c
-	$(CC) $(SRC_DIR)/$(FILENAME).c -o $(BUILD_DIR)/$(FILENAME).elf -mmcu=$(MMCU)
+elf: mkTarget $(SRC_DIR)/$(FILENAME).c $(SRC_DIR)/uart.c
+	$(CC)  $(SRC_DIR)/uart.c $(SRC_DIR)/$(FILENAME).c -o $(BUILD_DIR)/$(FILENAME).elf -mmcu=$(MMCU)
 
 mkTarget:
 	mkdir -p $(BUILD_DIR)
